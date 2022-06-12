@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
 fun HomeScreen() {
     Scaffold(
         topBar = { TopAppBarScreen() },
-        bottomBar = {}
+        bottomBar = {BottomNavigationBar()}
     ) {
         DiscoverScreen()
     }
