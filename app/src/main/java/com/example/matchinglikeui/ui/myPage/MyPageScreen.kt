@@ -1,9 +1,8 @@
 package com.example.matchinglikeui.ui.myPage
 
-import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ButtonDefaults
@@ -23,11 +22,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.matchinglikeui.R
+import org.intellij.lang.annotations.JdkConstants
 
 @Preview
 @Composable
 fun MyPage() {
-    Column(modifier = Modifier.fillMaxSize()) {
+    val columnState = rememberScrollState()
+    val rowState = rememberScrollState()
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .verticalScroll(columnState)) {
         Spacer(modifier = Modifier.height(10.dp))
         Image(
             painter = painterResource(id = R.drawable.sample_people),
@@ -84,17 +88,43 @@ fun MyPage() {
                 .height(20.dp)
                 .fillMaxWidth()
         )
+        BigButton(title = "使い方説明", "安全・安心にアプリをお使いいただくために")
+        Spacer(modifier = Modifier.height(10.dp))
+        Row(modifier = Modifier
+            .padding(horizontal = 10.dp)
+            .horizontalScroll(rowState)) {
+            MiddleButton(title = "キャンペーン一覧")
+            Spacer(modifier = Modifier.size(10.dp))
+            MiddleButton(title = "キャンペーン一覧")
+            Spacer(modifier = Modifier.size(10.dp))
+            MiddleButton(title = "キャンペーン一覧")
+            Spacer(modifier = Modifier.size(10.dp))
+            MiddleButton(title = "キャンペーン一覧")
+        }
     }
 }
 
 @Composable
 fun TextWithIcon(name: String, batch: Boolean) {
     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-        Text(text = name, fontSize = 20.sp, modifier = Modifier.padding(end = 4.dp), color = Color.Black)
-        if(batch) {
-            Image(painter = painterResource(R.drawable.ic_baseline_verified_user_24), contentDescription = "承認済みユーザーです", colorFilter = ColorFilter.tint(Color.Blue))
+        Text(
+            text = name,
+            fontSize = 20.sp,
+            modifier = Modifier.padding(end = 4.dp),
+            color = Color.Black
+        )
+        if (batch) {
+            Image(
+                painter = painterResource(R.drawable.ic_baseline_verified_user_24),
+                contentDescription = "承認済みユーザーです",
+                colorFilter = ColorFilter.tint(Color.Blue)
+            )
         } else {
-            Image(painter = painterResource(R.drawable.ic_baseline_privacy_tip_24), contentDescription = "本人確認が必要です", colorFilter = ColorFilter.tint(Color.Blue))
+            Image(
+                painter = painterResource(R.drawable.ic_baseline_privacy_tip_24),
+                contentDescription = "本人確認が必要です",
+                colorFilter = ColorFilter.tint(Color.Blue)
+            )
         }
     }
 }
@@ -116,6 +146,48 @@ fun StatusButton(title: String, status: String, buttonTitle: String, modifier: M
                 .width(45.dp)
         ) {
             Text(text = buttonTitle, color = Color.Black, fontSize = 12.sp)
+        }
+    }
+}
+
+@Composable
+fun BigButton(title: String, description: String) {
+    TextButton(
+        onClick = { /*TODO*/ },
+        colors = ButtonDefaults.textButtonColors(backgroundColor = Color.Blue.copy(0.1f)),
+        shape = RoundedCornerShape(10.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 10.dp)
+    ) {
+        Row(modifier = Modifier.height(IntrinsicSize.Min)) {
+            Image(
+                painter = painterResource(R.drawable.ic_baseline_health_and_safety_24),
+                contentDescription = null,
+                colorFilter = ColorFilter.tint(Color.Blue.copy(0.2f)),
+                modifier = Modifier.fillMaxHeight()
+            )
+            Spacer(modifier = Modifier.size(10.dp))
+            Column() {
+                Text(text = title, color = Color.Black, fontSize = 14.sp)
+                Text(text = description, color = Color.Gray.copy(0.8f), fontSize = 12.sp)
+            }
+        }
+    }
+}
+
+@Composable
+fun MiddleButton(title: String) {
+    TextButton(
+        onClick = { /*TODO*/ },
+        colors = ButtonDefaults.textButtonColors(backgroundColor = Color.Gray.copy(0.1f)),
+        shape = RoundedCornerShape(10.dp),
+        contentPadding = PaddingValues(4.dp),
+        modifier = Modifier
+            .height(70.dp)
+    ) {
+        Column() {
+            Text(text = title, color = Color.Black, fontSize = 12.sp)
         }
     }
 }
