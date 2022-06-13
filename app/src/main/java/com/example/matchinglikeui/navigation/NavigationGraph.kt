@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import com.example.matchinglikeui.ui.discover.DiscoverScreen
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.matchinglikeui.ui.chat.ChatScreen
 import com.example.matchinglikeui.ui.myPage.MyPage
 
 
@@ -19,7 +20,7 @@ fun NavigationGraph(navController: NavHostController, modifier: Modifier = Modif
             DiscoverScreen()
         }
         composable(BottomNavItem.Chat.screen_route) {
-            DiscoverScreen()
+            ChatScreen()
         }
         composable(BottomNavItem.MyPage.screen_route) {
             MyPage()
