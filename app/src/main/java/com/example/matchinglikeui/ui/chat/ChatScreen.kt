@@ -16,6 +16,7 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.*
 
 import androidx.compose.runtime.*
@@ -25,6 +26,7 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,7 +35,6 @@ import androidx.compose.ui.unit.sp
 import com.example.matchinglikeui.R
 import kotlinx.coroutines.launch
 
-@Preview
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChatScreen() {
@@ -146,5 +147,18 @@ fun ChatItemBubble(
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun ClickableMessage(
+
+) {
+    // urlを開くことができる
+    val urlHandler = LocalUriHandler.current
+
+    // Click位置を取得できる
+    ClickableText(text = , onClick = )
+
 }
 

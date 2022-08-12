@@ -7,3 +7,7 @@ sealed class Content {
     class Sticker(val sticker: Image): Content()
     class Media(val image: Image): Content()
 }
+
+val notEmpty: (String) -> Boolean = { it.isNotEmpty() }
+
+
